@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.9.2" />
+<title>sol_namespace.operations API documentation</title>
+<meta name="description" content="High level interface for all Solana-related interactions with SPL Name Service …" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>sol_namespace.operations</code></h1>
+</header>
+<section id="section-intro">
+<p>High level interface for all Solana-related interactions with SPL Name Service.</p>
+<p>Some of these are nothing but cleaned up output to RPC calls.
+Others are actual blockchain transactions with potentially
+many RPC calls to acquire necessary data for those transactions.</p>
+<p>At a high level, this is the CRUD interface of our SPLNS "databasing".</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#34;&#34;&#34;
+High level interface for all Solana-related interactions with SPL Name Service.
+
+Some of these are nothing but cleaned up output to RPC calls.
+Others are actual blockchain transactions with potentially
+many RPC calls to acquire necessary data for those transactions.
+
+At a high level, this is the CRUD interface of our SPLNS &#34;databasing&#34;.
+&#34;&#34;&#34;
+from base64 import b64decode
+from typing import Optional, Union, Any
+
+from solana.rpc.api import Client
+from solana.rpc.exception import SolanaException
+from solana.account import Account
+from solana.publickey import PublicKey
+from solana.transaction import Transaction
+from solana.system_program import SYS_PROGRAM_ID
+
+from sol_namespace.name_model import NamespaceNode
+from sol_namespace import instruction
+
+# TODO Transfer and Delete operations
+
+
+TxId = str
+RawTx = bytes
+Operation = Union[TxId, RawTx]
+
+
+def create(
+        client: Client,
+        name: NamespaceNode,
+        funder: Account,
+        *signers: Account,
+        populate: bool=True,
+        raw: bool=False
+        ) -&gt; Optional[Operation]:
+    &#34;&#34;&#34;
+    Create a name account on chain. By default, also populate it with data.
+
+    Optionally, return a signed raw transaction instead of directly sending it.
+    &#34;&#34;&#34;
+    tx = Transaction()
+    tx.add(instruction.create_instruction(name))
+    if populate:
+        tx.add(instruction.update_instruction(name))
+    if raw:
+        tx.recent_blockhash = client.get_recent_blockhash()[&#39;result&#39;][&#39;value&#39;][&#39;blockhash&#39;]
+        tx.sign(funder)
+        for signer in signers:
+            tx.sign(signer)
+        return tx.serialize()
+    # Otherwise just send the transaction
+    try:
+        response = client.send_transaction(tx, funder)
+    except SolanaException as e:
+        logs = e.data.get(&#39;data&#39;, {}).get(&#39;logs&#39;, [])
+        # TODO More efficient/informative error parsing here
+        if &#39;Program log: Instruction: Create&#39; in logs and \
+            &#39;Program log: The given name account already exists.&#39; in logs:
+            print(&#34;Error -- Name Create: name account already exists&#34;)
+        return None
+    return response[&#39;result&#39;]
+
+
+def update(
+        client: Client,
+        name: NamespaceNode,
+        signer: Account,
+        raw=False) -&gt; Optional[Operation]:
+    &#34;&#34;&#34;
+    Repopulate the entirety of the data under a name account.
+
+    Optionally, return a signed raw transaction instead of directly sending it.
+    &#34;&#34;&#34;
+    # Ensure the correct signer is passed in
+    if name.class_account != SYS_PROGRAM_ID:
+        assert signer.public_key() == name.class_account
+    else:
+        assert signer.public_key() == name.owner_account
+    tx = Transaction()
+    tx.add(instruction.update_instruction(name))
+    if raw:
+        tx.recent_blockhash = client.get_recent_blockhash()[&#39;result&#39;][&#39;value&#39;][&#39;blockhash&#39;]
+        tx.sign(signer)
+        return tx.serialize()
+
+    response = client.send_transaction(tx, signer)
+    return response[&#39;result&#39;]
+
+
+def update_bytes(
+        client: Client,
+        name: NamespaceNode,
+        signer: Account,
+        input_data: bytes,
+        offset: int=0,
+        raw=False) -&gt; Optional[Operation]:
+    &#34;&#34;&#34;
+    Custom update to the data under a name account.
+    Requires specifying the starting offset byte-index, and the raw bytes to write.
+
+    Signer is either the owner of the account, or the class account if it&#39;s not
+    default.
+    &#34;&#34;&#34;
+    # Ensure the correct signer is passed in
+    if name.class_account != SYS_PROGRAM_ID:
+        assert signer.public_key() == name.class_account
+    else:
+        assert signer.public_key() == name.owner_account
+    tx = Transaction()
+    tx.add(instruction.update_instruction(name, offset=offset, input_data=input_data))
+    if raw:
+        tx.recent_blockhash = client.get_recent_blockhash()[&#39;result&#39;][&#39;value&#39;][&#39;blockhash&#39;]
+        tx.sign(signer)
+        return tx.serialize()
+
+    response = client.send_transaction(tx, signer)
+    return response[&#39;result&#39;]
+
+
+def delete_name(
+        client: Client,
+        name: NamespaceNode,
+        signer: Account,  # must correspond to name.owner_account
+        refund_to: PublicKey=None,
+        raw: bool=False) -&gt; Optional[Operation]:
+    &#34;&#34;&#34;
+    Delete a namespace node.
+    &#34;&#34;&#34;
+    assert name.owner_account == signer.public_key(), &#34;Must sign name deletion with account owner.&#34;
+    tx = Transaction()
+    tx.add(instruction.delete_instruction(name, refund_to=refund_to))
+    if raw:
+        tx.recent_blockhash = client.get_recent_blockhash()[&#39;result&#39;][&#39;value&#39;][&#39;blockhash&#39;]
+        tx.sign(signer)
+        return tx.serialize()
+
+    response = client.send_transaction(tx, signer)
+    return response[&#39;result&#39;]
+
+
+def transfer_name(
+        client: Client,
+        name: NamespaceNode,
+        new_owner: PublicKey,
+        signer: Account,  # must correspond to name.owner_account
+        class_account_signer: Account=None,
+        raw: bool=False) -&gt; Optional[Operation]:
+    &#34;&#34;&#34;
+    Transfer a namespace node to a new owner.
+    &#34;&#34;&#34;
+    tx = Transaction()
+    tx.add(instruction.transfer_instruction(name, new_owner=new_owner))
+    if raw:
+        tx.recent_blockhash = client.get_recent_blockhash()[&#39;result&#39;][&#39;value&#39;][&#39;blockhash&#39;]
+        tx.sign(signer)
+        if class_account_signer is not None:
+            assert name.class_account != SYS_PROGRAM_ID, &#34;Invalid name class account signer&#34;
+            tx.sign(class_account_signer)
+        return tx.serialize()
+
+    if class_account_signer is not None:
+        assert name.class_account != SYS_PROGRAM_ID, &#34;Cannot specify class account signer on this name&#34;
+        response = client.send_transaction(tx, signer, class_account_signer)
+    else:
+        response = client.send_transaction(tx, signer)
+    return response[&#39;result&#39;]
+
+
+
+def get_name_data(client: Client, name: NamespaceNode) -&gt; Any:
+    &#34;&#34;&#34;
+    Look up account data, deserialize it.
+    &#34;&#34;&#34;
+    response = client.get_account_info(name.account, encoding=&#39;jsonParsed&#39;)
+    value = response[&#39;result&#39;][&#39;value&#39;]
+    if value is None:
+        print(f&#34;{name.account} not found&#34;)
+        return None
+    data = value[&#39;data&#39;][0]
+    data = b64decode(data)
+    data = data[96:]
+    return type(name.data).deserialize(data)
+
+
+SOL_PRICE_USD = 40
+BASE_AMT = 89088  # Minimum rent-exempt balance for accounts with no extra data allocation.
+PER_BYTE = 696  # at 348 lamports per byte-year
+LAMPORTS_PER_SOL = 100000000  # 100 million lamports = 1 SOL
+
+def estimate_cost(
+        n_bytes: int,
+        sol_price_usd: float=SOL_PRICE_USD
+        ) -&gt; float:
+    &#34;&#34;&#34;
+    Estimate dollar value of minimum rent-exempt balance
+    to store `n_bytes` in a Solana account.
+    &#34;&#34;&#34;
+    return sol_price_usd * (BASE_AMT + (n_bytes * PER_BYTE)) / LAMPORTS_PER_SOL</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="sol_namespace.operations.create"><code class="name flex">
+<span>def <span class="ident">create</span></span>(<span>client: solana.rpc.api.Client, name: <a title="sol_namespace.name_model.NamespaceNode" href="name_model.html#sol_namespace.name_model.NamespaceNode">NamespaceNode</a>, funder: solana.account.Account, *signers: solana.account.Account, populate: bool = True, raw: bool = False) ‑> Union[str, bytes, NoneType]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Create a name account on chain. By default, also populate it with data.</p>
+<p>Optionally, return a signed raw transaction instead of directly sending it.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def create(
+        client: Client,
+        name: NamespaceNode,
+        funder: Account,
+        *signers: Account,
+        populate: bool=True,
+        raw: bool=False
+        ) -&gt; Optional[Operation]:
+    &#34;&#34;&#34;
+    Create a name account on chain. By default, also populate it with data.
+
+    Optionally, return a signed raw transaction instead of directly sending it.
+    &#34;&#34;&#34;
+    tx = Transaction()
+    tx.add(instruction.create_instruction(name))
+    if populate:
+        tx.add(instruction.update_instruction(name))
+    if raw:
+        tx.recent_blockhash = client.get_recent_blockhash()[&#39;result&#39;][&#39;value&#39;][&#39;blockhash&#39;]
+        tx.sign(funder)
+        for signer in signers:
+            tx.sign(signer)
+        return tx.serialize()
+    # Otherwise just send the transaction
+    try:
+        response = client.send_transaction(tx, funder)
+    except SolanaException as e:
+        logs = e.data.get(&#39;data&#39;, {}).get(&#39;logs&#39;, [])
+        # TODO More efficient/informative error parsing here
+        if &#39;Program log: Instruction: Create&#39; in logs and \
+            &#39;Program log: The given name account already exists.&#39; in logs:
+            print(&#34;Error -- Name Create: name account already exists&#34;)
+        return None
+    return response[&#39;result&#39;]</code></pre>
+</details>
+</dd>
+<dt id="sol_namespace.operations.delete_name"><code class="name flex">
+<span>def <span class="ident">delete_name</span></span>(<span>client: solana.rpc.api.Client, name: <a title="sol_namespace.name_model.NamespaceNode" href="name_model.html#sol_namespace.name_model.NamespaceNode">NamespaceNode</a>, signer: solana.account.Account, refund_to: solana.publickey.PublicKey = None, raw: bool = False) ‑> Union[str, bytes, NoneType]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Delete a namespace node.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def delete_name(
+        client: Client,
+        name: NamespaceNode,
+        signer: Account,  # must correspond to name.owner_account
+        refund_to: PublicKey=None,
+        raw: bool=False) -&gt; Optional[Operation]:
+    &#34;&#34;&#34;
+    Delete a namespace node.
+    &#34;&#34;&#34;
+    assert name.owner_account == signer.public_key(), &#34;Must sign name deletion with account owner.&#34;
+    tx = Transaction()
+    tx.add(instruction.delete_instruction(name, refund_to=refund_to))
+    if raw:
+        tx.recent_blockhash = client.get_recent_blockhash()[&#39;result&#39;][&#39;value&#39;][&#39;blockhash&#39;]
+        tx.sign(signer)
+        return tx.serialize()
+
+    response = client.send_transaction(tx, signer)
+    return response[&#39;result&#39;]</code></pre>
+</details>
+</dd>
+<dt id="sol_namespace.operations.estimate_cost"><code class="name flex">
+<span>def <span class="ident">estimate_cost</span></span>(<span>n_bytes: int, sol_price_usd: float = 40) ‑> float</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Estimate dollar value of minimum rent-exempt balance
+to store <code>n_bytes</code> in a Solana account.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def estimate_cost(
+        n_bytes: int,
+        sol_price_usd: float=SOL_PRICE_USD
+        ) -&gt; float:
+    &#34;&#34;&#34;
+    Estimate dollar value of minimum rent-exempt balance
+    to store `n_bytes` in a Solana account.
+    &#34;&#34;&#34;
+    return sol_price_usd * (BASE_AMT + (n_bytes * PER_BYTE)) / LAMPORTS_PER_SOL</code></pre>
+</details>
+</dd>
+<dt id="sol_namespace.operations.get_name_data"><code class="name flex">
+<span>def <span class="ident">get_name_data</span></span>(<span>client: solana.rpc.api.Client, name: <a title="sol_namespace.name_model.NamespaceNode" href="name_model.html#sol_namespace.name_model.NamespaceNode">NamespaceNode</a>) ‑> Any</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Look up account data, deserialize it.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_name_data(client: Client, name: NamespaceNode) -&gt; Any:
+    &#34;&#34;&#34;
+    Look up account data, deserialize it.
+    &#34;&#34;&#34;
+    response = client.get_account_info(name.account, encoding=&#39;jsonParsed&#39;)
+    value = response[&#39;result&#39;][&#39;value&#39;]
+    if value is None:
+        print(f&#34;{name.account} not found&#34;)
+        return None
+    data = value[&#39;data&#39;][0]
+    data = b64decode(data)
+    data = data[96:]
+    return type(name.data).deserialize(data)</code></pre>
+</details>
+</dd>
+<dt id="sol_namespace.operations.transfer_name"><code class="name flex">
+<span>def <span class="ident">transfer_name</span></span>(<span>client: solana.rpc.api.Client, name: <a title="sol_namespace.name_model.NamespaceNode" href="name_model.html#sol_namespace.name_model.NamespaceNode">NamespaceNode</a>, new_owner: solana.publickey.PublicKey, signer: solana.account.Account, class_account_signer: solana.account.Account = None, raw: bool = False) ‑> Union[str, bytes, NoneType]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Transfer a namespace node to a new owner.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def transfer_name(
+        client: Client,
+        name: NamespaceNode,
+        new_owner: PublicKey,
+        signer: Account,  # must correspond to name.owner_account
+        class_account_signer: Account=None,
+        raw: bool=False) -&gt; Optional[Operation]:
+    &#34;&#34;&#34;
+    Transfer a namespace node to a new owner.
+    &#34;&#34;&#34;
+    tx = Transaction()
+    tx.add(instruction.transfer_instruction(name, new_owner=new_owner))
+    if raw:
+        tx.recent_blockhash = client.get_recent_blockhash()[&#39;result&#39;][&#39;value&#39;][&#39;blockhash&#39;]
+        tx.sign(signer)
+        if class_account_signer is not None:
+            assert name.class_account != SYS_PROGRAM_ID, &#34;Invalid name class account signer&#34;
+            tx.sign(class_account_signer)
+        return tx.serialize()
+
+    if class_account_signer is not None:
+        assert name.class_account != SYS_PROGRAM_ID, &#34;Cannot specify class account signer on this name&#34;
+        response = client.send_transaction(tx, signer, class_account_signer)
+    else:
+        response = client.send_transaction(tx, signer)
+    return response[&#39;result&#39;]</code></pre>
+</details>
+</dd>
+<dt id="sol_namespace.operations.update"><code class="name flex">
+<span>def <span class="ident">update</span></span>(<span>client: solana.rpc.api.Client, name: <a title="sol_namespace.name_model.NamespaceNode" href="name_model.html#sol_namespace.name_model.NamespaceNode">NamespaceNode</a>, signer: solana.account.Account, raw=False) ‑> Union[str, bytes, NoneType]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Repopulate the entirety of the data under a name account.</p>
+<p>Optionally, return a signed raw transaction instead of directly sending it.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def update(
+        client: Client,
+        name: NamespaceNode,
+        signer: Account,
+        raw=False) -&gt; Optional[Operation]:
+    &#34;&#34;&#34;
+    Repopulate the entirety of the data under a name account.
+
+    Optionally, return a signed raw transaction instead of directly sending it.
+    &#34;&#34;&#34;
+    # Ensure the correct signer is passed in
+    if name.class_account != SYS_PROGRAM_ID:
+        assert signer.public_key() == name.class_account
+    else:
+        assert signer.public_key() == name.owner_account
+    tx = Transaction()
+    tx.add(instruction.update_instruction(name))
+    if raw:
+        tx.recent_blockhash = client.get_recent_blockhash()[&#39;result&#39;][&#39;value&#39;][&#39;blockhash&#39;]
+        tx.sign(signer)
+        return tx.serialize()
+
+    response = client.send_transaction(tx, signer)
+    return response[&#39;result&#39;]</code></pre>
+</details>
+</dd>
+<dt id="sol_namespace.operations.update_bytes"><code class="name flex">
+<span>def <span class="ident">update_bytes</span></span>(<span>client: solana.rpc.api.Client, name: <a title="sol_namespace.name_model.NamespaceNode" href="name_model.html#sol_namespace.name_model.NamespaceNode">NamespaceNode</a>, signer: solana.account.Account, input_data: bytes, offset: int = 0, raw=False) ‑> Union[str, bytes, NoneType]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Custom update to the data under a name account.
+Requires specifying the starting offset byte-index, and the raw bytes to write.</p>
+<p>Signer is either the owner of the account, or the class account if it's not
+default.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def update_bytes(
+        client: Client,
+        name: NamespaceNode,
+        signer: Account,
+        input_data: bytes,
+        offset: int=0,
+        raw=False) -&gt; Optional[Operation]:
+    &#34;&#34;&#34;
+    Custom update to the data under a name account.
+    Requires specifying the starting offset byte-index, and the raw bytes to write.
+
+    Signer is either the owner of the account, or the class account if it&#39;s not
+    default.
+    &#34;&#34;&#34;
+    # Ensure the correct signer is passed in
+    if name.class_account != SYS_PROGRAM_ID:
+        assert signer.public_key() == name.class_account
+    else:
+        assert signer.public_key() == name.owner_account
+    tx = Transaction()
+    tx.add(instruction.update_instruction(name, offset=offset, input_data=input_data))
+    if raw:
+        tx.recent_blockhash = client.get_recent_blockhash()[&#39;result&#39;][&#39;value&#39;][&#39;blockhash&#39;]
+        tx.sign(signer)
+        return tx.serialize()
+
+    response = client.send_transaction(tx, signer)
+    return response[&#39;result&#39;]</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="sol_namespace" href="index.html">sol_namespace</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="two-column">
+<li><code><a title="sol_namespace.operations.create" href="#sol_namespace.operations.create">create</a></code></li>
+<li><code><a title="sol_namespace.operations.delete_name" href="#sol_namespace.operations.delete_name">delete_name</a></code></li>
+<li><code><a title="sol_namespace.operations.estimate_cost" href="#sol_namespace.operations.estimate_cost">estimate_cost</a></code></li>
+<li><code><a title="sol_namespace.operations.get_name_data" href="#sol_namespace.operations.get_name_data">get_name_data</a></code></li>
+<li><code><a title="sol_namespace.operations.transfer_name" href="#sol_namespace.operations.transfer_name">transfer_name</a></code></li>
+<li><code><a title="sol_namespace.operations.update" href="#sol_namespace.operations.update">update</a></code></li>
+<li><code><a title="sol_namespace.operations.update_bytes" href="#sol_namespace.operations.update_bytes">update_bytes</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.2</a>.</p>
+</footer>
+</body>
+</html>
