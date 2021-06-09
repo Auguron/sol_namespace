@@ -7,8 +7,8 @@ from dataclasses import dataclass
 
 from solana.publickey import PublicKey
 from solana.system_program import SYS_PROGRAM_ID
-from spl.name_service.name_program import NAME_PROGRAM_ID, MAINNET_NAME_PROGRAM_ID
-from spl.name_service.utils import get_hashed_name, get_name_account_address
+from spl.name_service import name_program as name_prog
+from spl.name_service.utils import get_hashed_name
 
 
 @dataclass
@@ -21,16 +21,16 @@ class NameProgram:
 
 
 default_program = NameProgram(
-    hash_prefix="SPL Name Service",
-    id=NAME_PROGRAM_ID
+    hash_prefix=name_prog.NAME_PROGRAM_HASH_PREFIX,
+    id=name_prog.DEVNET_NAME_PROGRAM_ID
     )
 """
 The SPL Name Service listed in official Solana repos.
 """
 
 mainnet_name_program = NameProgram(
-    hash_prefix="SPL Name Service",
-    id=MAINNET_NAME_PROGRAM_ID
+    hash_prefix=name_prog.NAME_PROGRAM_HASH_PREFIX,
+    id=name_prog.MAINNET_NAME_PROGRAM_ID
     )
 
 @dataclass
@@ -72,8 +72,8 @@ class NamespaceNode:
     program: NameProgram = default_program
     balance: Optional[int] = None  # Lamports
     # Calculated dynamically
-    # hashed_name_field: bytes=None
-    # account: PublicKey=None
+    # hashed_name_field: bytes
+    # account: PublicKey
 
     def __post_init__(self):
         if self.parent and self.parent.program != self.program:
@@ -85,8 +85,12 @@ class NamespaceNode:
             parent_account = self.parent.account
         else:
             parent_account = SYS_PROGRAM_ID
-        self.account = get_name_account_address(
-            [self.hashed_name_field, bytes(self.class_account), bytes(parent_account)],
+        self.account, _ = PublicKey.find_program_address(
+            [
+                self.hashed_name_field,
+                bytes(self.class_account),
+                bytes(parent_account)
+            ],
             self.program.id
             )
 

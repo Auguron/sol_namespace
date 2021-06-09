@@ -22,7 +22,6 @@ def create_instruction(
     parent_owner_account = SYS_PROGRAM_ID
     if name.parent:
         parent_owner_account = name.parent.owner_account
-        # parent_account = PublicKey(name.parent.account)
         parent_account = name.parent.account
     else:
         parent_account = SYS_PROGRAM_ID
