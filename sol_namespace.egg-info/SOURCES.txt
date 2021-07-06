@@ -1,0 +1,10 @@
+README.md
+setup.py
+sol_namespace/__init__.py
+sol_namespace/instruction.py
+sol_namespace/name_model.py
+sol_namespace/operations.py
+sol_namespace.egg-info/PKG-INFO
+sol_namespace.egg-info/SOURCES.txt
+sol_namespace.egg-info/dependency_links.txt
+sol_namespace.egg-info/top_level.txt

@@ -22,16 +22,11 @@ class NameProgram:
 
 default_program = NameProgram(
     hash_prefix=name_prog.NAME_PROGRAM_HASH_PREFIX,
-    id=name_prog.DEVNET_NAME_PROGRAM_ID
+    id=name_prog.NAME_PROGRAM_ID
     )
 """
 The SPL Name Service listed in official Solana repos.
 """
-
-mainnet_name_program = NameProgram(
-    hash_prefix=name_prog.NAME_PROGRAM_HASH_PREFIX,
-    id=name_prog.MAINNET_NAME_PROGRAM_ID
-    )
 
 @dataclass
 class NamespaceData:

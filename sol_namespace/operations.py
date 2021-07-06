@@ -20,8 +20,6 @@ from solana.system_program import SYS_PROGRAM_ID
 from sol_namespace.name_model import NamespaceNode
 from sol_namespace import instruction
 
-# TODO Transfer and Delete operations
-
 
 TxId = str
 RawTx = bytes
